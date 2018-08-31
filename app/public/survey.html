@@ -179,6 +179,8 @@
 
     <!-- Bootstrap script -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
     <!-- Javascript specific to the page -->
     <script type="text/javascript">
 
@@ -193,11 +195,13 @@
             return isAnswered;
         }
 
+        // Submit total form with click of the submit button
         $("#submit").on("click", function(event){
             event.preventDefault();
 
             // Check that everything is answered
             if(checkAnswered){
+                // Create new friend object using the user input
                 var newFriend = {
                     name: $("#name").val(),
                     picture: $("#photo").val(),
@@ -214,10 +218,12 @@
                         $("#question10").val()
                     ]
                 }
+                // AJAX request
                 $.post("/api/friends", newFriend, function(data) {
                     console.log(data);
                     $("#friendPicture").attr("src", data.picture);
                     $("#friendName").text(data.name);
+                    // Show modal
                     $("#friendResult").modal("toggle");
                 });
             }else{
