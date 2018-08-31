@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 var friends = [
     {
         name: "John Kim",
-        picture: "",
+        picture: "https://www.thelocal.de/userdata/images/article/fa6fd5014ccbd8f4392f716473ab6ff354f871505d9128820bbb0461cce1d645.jpg",
         scores: [
             1,
             3,
@@ -35,7 +35,7 @@ var friends = [
     },
     {
         name: "Sean Angle",
-        picture: "",
+        picture: "http://animals.sandiegozoo.org/sites/default/files/2016-11/animals_hero_koala02%20copy.jpg",
         scores: [
             3,
             2,
@@ -67,6 +67,27 @@ app.get("/", function(req, res){
 app.get("/api/friends", function(req, res){
     return res.json(friends);
 });
+
+app.post("/api/friends", function(req, res){
+    var newFriend = req.body;
+    var match = 0;
+    var difference = 0;
+    var smallestDiff = 100;
+    // Find friend with the smallest difference in scores
+    for(var i = 0; i < friends.length; i++){
+        difference = 0;
+        for(var j = 0; j < newFriend.scores.length; j++){
+            difference += Math.abs(newFriend.scores[j] - friends[i].scores[j]);
+        }
+        if(difference < smallestDiff){
+            match = i;
+        }
+    }
+    // Return the best match
+    friends.push(newFriend);
+    res.json(friends[match]);
+});
+
 
 // Starts the server to begin listening
 // =============================================================
