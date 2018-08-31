@@ -3,6 +3,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var Friends = require("./app/data/friends");
 
 // Sets up the Express App
 // =============================================================
@@ -16,7 +17,9 @@ app.use(bodyParser.json());
 // Friends (DATA)
 // Start with initial default friend options
 // =============================================================
-var friends = [
+
+var friend = new Friends();
+var friend1 =
     {
         name: "John Kim",
         picture: "https://www.thelocal.de/userdata/images/article/fa6fd5014ccbd8f4392f716473ab6ff354f871505d9128820bbb0461cce1d645.jpg",
@@ -32,7 +35,8 @@ var friends = [
             3,
             4
         ]
-    },
+    };
+var friend2 =
     {
         name: "Sean Angle",
         picture: "http://animals.sandiegozoo.org/sites/default/files/2016-11/animals_hero_koala02%20copy.jpg",
@@ -48,8 +52,10 @@ var friends = [
             1,
             4
         ]
-    }
-];
+    };
+
+friend.addFriend(friend1);
+friend.addFriend(friend2);
 
 
 // Routes
@@ -65,27 +71,16 @@ app.get("/", function(req, res){
 });
 
 app.get("/api/friends", function(req, res){
-    return res.json(friends);
+    // var output = friends.returnFriends();
+    return res.json(friend.returnFriends());
 });
 
 app.post("/api/friends", function(req, res){
     var newFriend = req.body;
-    var match = 0;
-    var difference = 0;
-    var smallestDiff = 100;
-    // Find friend with the smallest difference in scores
-    for(var i = 0; i < friends.length; i++){
-        difference = 0;
-        for(var j = 0; j < newFriend.scores.length; j++){
-            difference += Math.abs(newFriend.scores[j] - friends[i].scores[j]);
-        }
-        if(difference < smallestDiff){
-            match = i;
-        }
-    }
+
     // Return the best match
-    friends.push(newFriend);
-    res.json(friends[match]);
+    res.json(friend.getMatch(newFriend));
+
 });
 
 
