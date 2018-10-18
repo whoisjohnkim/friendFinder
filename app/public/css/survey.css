@@ -12,6 +12,12 @@ body {
     opacity: 0.8;
 }
 
+.survey {
+    font-family: 'Sacramento', cursive;
+    text-align: center;
+    font-size: 100px;
+}
+
 .submit {
     display: block;
     margin: 20px auto;
