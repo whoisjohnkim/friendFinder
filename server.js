@@ -58,6 +58,8 @@ friend.addFriend(friend1);
 friend.addFriend(friend2);
 
 
+app.use(express.static(__dirname + '/app/public'));
+
 // Routes
 // =============================================================
 

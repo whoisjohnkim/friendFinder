@@ -1,0 +1,28 @@
+body {
+    background-image: url('../images/friends.jpg');
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+.surveyBox {
+    width: 70%;
+    margin: 100px auto;
+    padding: 50px;
+    background-color: white;
+    opacity: 0.8;
+}
+
+.submit {
+    display: block;
+    margin: 20px auto;
+    width: 30%;
+}
+
+
+.links a {
+    color: white;
+}
+
+.links a:hover {
+    color: lightgray;
+}

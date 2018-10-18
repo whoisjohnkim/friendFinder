@@ -1,0 +1,39 @@
+body {
+    background-image: url('../images/friends.jpg');
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+.mainBox {
+    width: 70%;
+    margin: 100px auto;
+    padding: 50px;
+    background-color: white;
+    opacity: 0.8;
+    text-align: center;
+}
+
+.title {
+    font-size: 150px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-family: 'Sacramento', cursive;
+}
+
+.description {
+    font-size: 25px;
+}
+
+.surveyButton {
+    display: block;
+    margin: 20px auto;
+    width: 30%;
+}
+
+.links a {
+    color: white;
+}
+
+.links a:hover {
+    color: lightgray;
+}
